@@ -1,3 +1,3 @@
 export default function keys() {
-  return ["color"];
+  return ["animal", "color", "fruit", "nut", "vegetable"];
 }
