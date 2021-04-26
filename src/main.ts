@@ -6,6 +6,9 @@ import { serve } from "https://deno.land/std/http/server.ts";
 const port = flags.parse(Deno.args).port;
 const server = serve({ port });
 
+const headers = new Headers();
+headers.set("Access-Control-Allow-Origin", "*");
+
 for await (const req of server) {
   if (req.method === "GET") {
     const [, endpoint, argString] = req.url.split("/");
@@ -13,7 +16,7 @@ for await (const req of server) {
     const warnings: string[] = [];
 
     if (endpoint === "keys") {
-      req.respond({ body: JSON.stringify(keys()) });
+      req.respond({ body: JSON.stringify(keys()), headers });
       continue;
     }
 
@@ -23,10 +26,10 @@ for await (const req of server) {
         if (value === null) warnings.push(`No matching key for "${key}"`);
         return value;
       });
-      req.respond({ body: JSON.stringify({ data, warnings }) });
+      req.respond({ body: JSON.stringify({ data, warnings }), headers });
       continue;
     }
   }
 
-  req.respond({ status: 404 });
+  req.respond({ headers, status: 404 });
 }
