@@ -3,6 +3,7 @@ import activeVerbs from "../data/active_verbs.ts";
 import adjectives from "../data/adjectives.ts";
 import adverbs from "../data/adverbs.ts";
 import animals from "../data/animals.ts";
+import cities from "../data/cities.ts";
 import colors from "../data/colors.ts";
 import fruits from "../data/fruits.ts";
 import nuts from "../data/nuts.ts";
@@ -22,6 +23,8 @@ export default function uniform(key: string): null | string {
       return draw(adverbs);
     case "animal":
       return draw(animals);
+    case "city":
+      return draw(cities);
     case "color":
       return draw(colors);
     case "fruit":

@@ -5,6 +5,7 @@ export default function keys() {
     "adjective",
     "adverb",
     "animal",
+    "city",
     "color",
     "fruit",
     "nut",
